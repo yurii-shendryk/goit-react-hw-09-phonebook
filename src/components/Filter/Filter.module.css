@@ -1,0 +1,23 @@
+.Filter {
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.Filter__label {
+  color: rgba(33, 33, 33, 0.7);
+}
+
+.Filter__input {
+  margin-left: 20px;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+  outline: none;
+}
+
+.Filter__input:focus {
+  border-color: #2196f3;
+}

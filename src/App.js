@@ -1,38 +1,48 @@
 import { Component } from 'react';
 import shortid from 'shortid';
+import Container from './components/Container';
 import ContactForm from './components/ContactForm';
 import ContactList from './components/ContactList';
 import Filter from './components/Filter';
 class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: [],
     filter: '',
   };
-
+  // Додаємо об'єкт
   addContact = ({ name, number }) => {
+    const { contacts } = this.state;
+    const contactsNames = contacts.map(contact => contact.name);
+    if (contactsNames.includes(name)) {
+      alert(`${name}is already in contacts`);
+      return;
+    }
     const contact = {
       name,
       id: shortid.generate(),
       number,
     };
+
+    this.setState(prevState => {
+      return { contacts: [contact, ...prevState.contacts] };
+    });
+  };
+  // Видаляємо об'єкт
+  deleteContact = contactId => {
     this.setState(prevState => ({
-      contacts: [contact, ...prevState.contacts],
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
   };
-
+  // змінюємо інпут фільтрації
   changeFilter = ({ currentTarget }) => {
     this.setState({
       filter: currentTarget.value,
     });
   };
-
+  // Фільтруємо існуючі контакти
   getFilteredContacts = () => {
     const { contacts, filter } = this.state;
+
     const normalizedFilter = filter.toLowerCase();
     return contacts.filter(({ name }) =>
       name.toLowerCase().includes(normalizedFilter),
@@ -40,17 +50,29 @@ class App extends Component {
   };
 
   render() {
-    const { filter } = this.state;
+    const { contacts, filter } = this.state;
 
     return (
-      <div>
-        <h1>Phonebook</h1>
-        <ContactForm onSubmitForm={this.addContact} />
-
-        <h2>Contacts</h2>
-        <Filter filter={filter} onChangeFilter={this.changeFilter} />
-        <ContactList contacts={this.getFilteredContacts()} />
-      </div>
+      <>
+        <Container>
+          <h1>Phonebook</h1>
+          {/* форма для введення контактних даних  */}
+          <ContactForm onSubmitForm={this.addContact} />
+          {/* якщо контакти є, то відображаємо список і фільтр */}
+          {contacts.length > 0 && (
+            <>
+              <h2>Contacts</h2>
+              {/* фільтрація контактів */}
+              <Filter filter={filter} onChangeFilter={this.changeFilter} />
+              {/* список контактів */}
+              <ContactList
+                contacts={this.getFilteredContacts()}
+                onDeleteContact={this.deleteContact}
+              />
+            </>
+          )}
+        </Container>
+      </>
     );
   }
 }

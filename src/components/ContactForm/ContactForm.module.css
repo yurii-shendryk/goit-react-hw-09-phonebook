@@ -1,0 +1,60 @@
+.ContactForm {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid rgba(33, 33, 33, 0.4);
+  border-radius: 8px;
+}
+
+.ContactForm_label {
+  display: block;
+  font-size: 18px;
+  line-height: 1.167;
+  letter-spacing: 0.03em;
+  color: #000;
+}
+
+.ContactForm_label:not(:first-child) {
+  margin-top: 30px;
+}
+
+.ContactForm_label--name {
+  color: #5c2532;
+}
+.ContactForm_label--number {
+  color: #547980;
+}
+.ContactForm_button {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  padding: 10px 55px 10px 56px;
+  background-color: #3f51b5;
+  color: #fff;
+  border: 1px solid#3f51b5;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.ContactForm__input {
+  width: 100%;
+  margin-top: 10px;
+  padding: 11px;
+  font-size: 14px;
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+  outline: none;
+}
+
+.ContactForm__input:focus {
+  border-color: #2196f3;
+}
+
+.ContactForm__input:not(:placeholder-shown):valid {
+  border: 1px solid green;
+}
+
+.ContactForm__input:not(:placeholder-shown):invalid {
+  border: 1px solid red;
+}

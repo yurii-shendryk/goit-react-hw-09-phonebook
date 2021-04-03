@@ -1,0 +1,9 @@
+.ContactList__wrap {
+  text-align: center;
+}
+.ContactList {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 4px;
+}
