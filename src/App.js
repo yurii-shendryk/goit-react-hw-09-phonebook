@@ -11,11 +11,14 @@ const App = () => {
   });
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem('contacts'));
-    setState(prevState => ({
-      ...prevState,
-      contacts: data,
-    }));
+    const contactsData = localStorage.getItem('contacts');
+    const ParsedContactsData = JSON.parse(contactsData);
+    if (ParsedContactsData) {
+      setState(prevState => ({
+        ...prevState,
+        contacts: ParsedContactsData,
+      }));
+    }
   }, []);
 
   useEffect(() => {
