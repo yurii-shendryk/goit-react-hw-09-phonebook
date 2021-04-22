@@ -1,19 +1,27 @@
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames/bind';
-import PropTypes from 'prop-types';
-import styles from './ContactForm.module.css';
 
+import styles from './ContactForm.module.css';
+import { addContact } from '../../redux/contacts/contacts-actions';
 let cx = classNames.bind(styles);
 const initialState = {
   name: '',
   number: '',
 };
-const ContactForm = ({ onSubmitForm }) => {
-  const [state, setState] = useState(initialState);
+
+const getContacts = ({ contacts: { items } }) => items;
+
+const ContactForm = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
+  const [contactsState, setContactsState] = useState(initialState);
+
+  const { name, number } = contactsState;
 
   const handleInputChange = ({ currentTarget }) => {
     const { name, value } = currentTarget;
-    setState(prev => ({
+    setContactsState(prev => ({
       ...prev,
       [name]: value,
     }));
@@ -21,13 +29,17 @@ const ContactForm = ({ onSubmitForm }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    onSubmitForm(state);
-    setState(initialState);
+    const unavailableName = contacts.some(contact => contact.name === name);
+    if (unavailableName) {
+      alert(`${name} is already in contacts`);
+      return;
+    }
+    dispatch(addContact(name, number));
+    setContactsState(initialState);
   };
 
   const nameClasses = cx('ContactForm_label', 'ContactForm_label--name');
   const numberClasses = cx('ContactForm_label', 'ContactForm_label--number');
-  const { name, number } = state;
   return (
     <form onSubmit={handleSubmit} className={styles.ContactForm}>
       <label className={nameClasses}>
@@ -64,10 +76,6 @@ const ContactForm = ({ onSubmitForm }) => {
       </button>
     </form>
   );
-};
-
-ContactForm.propTypes = {
-  onSubmitForm: PropTypes.func.isRequired,
 };
 
 export default ContactForm;
