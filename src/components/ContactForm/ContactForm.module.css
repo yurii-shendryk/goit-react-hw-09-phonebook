@@ -37,6 +37,13 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
+.ContactForm_button--disabled {
+  border-color: rgba(0, 0, 0, 0.12);
+  background-color: rgba(0, 0, 0, 0.12);
+  cursor: initial;
+}
+
 .ContactForm__input {
   width: 100%;
   margin-top: 10px;
@@ -45,6 +52,10 @@
   border: 1px solid rgba(33, 33, 33, 0.2);
   border-radius: 4px;
   outline: none;
+}
+
+.ContactForm__input--disabled {
+  border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .ContactForm__input:focus {

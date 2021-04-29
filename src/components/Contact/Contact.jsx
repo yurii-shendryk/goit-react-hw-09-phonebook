@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/contacts/contacts-actions';
+import { deleteContact } from '../../redux/contacts/contacts-operations';
 import styles from './Contact.module.css';
 
 const getContact = id => state =>
@@ -9,7 +9,6 @@ const getContact = id => state =>
 
 const Contact = ({ id }) => {
   const { name, number } = useSelector(getContact(id));
-  console.log(id);
   const dispatch = useDispatch();
   const handleDelete = () => dispatch(deleteContact(id));
   return (
@@ -31,7 +30,7 @@ const Contact = ({ id }) => {
 };
 
 Contact.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default Contact;

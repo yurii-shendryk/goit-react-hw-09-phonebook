@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames/bind';
 
 import styles from './ContactForm.module.css';
-import { addContact } from '../../redux/contacts/contacts-actions';
+import { addContact } from '../../redux/contacts/contacts-operations';
 let cx = classNames.bind(styles);
 const initialState = {
   name: '',
@@ -11,10 +11,11 @@ const initialState = {
 };
 
 const getContacts = ({ contacts: { items } }) => items;
-
+const load = ({ contacts: { loading } }) => loading;
 const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
+  const isLoadingContacts = useSelector(load);
   const [contactsState, setContactsState] = useState(initialState);
 
   const { name, number } = contactsState;
@@ -30,16 +31,19 @@ const ContactForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
     const unavailableName = contacts.some(contact => contact.name === name);
-    if (unavailableName) {
-      alert(`${name} is already in contacts`);
+    if (!unavailableName) {
+      dispatch(addContact(name, number));
+      setContactsState(initialState);
       return;
     }
-    dispatch(addContact(name, number));
-    setContactsState(initialState);
+    alert(`${name} is already in contacts`);
   };
 
   const nameClasses = cx('ContactForm_label', 'ContactForm_label--name');
   const numberClasses = cx('ContactForm_label', 'ContactForm_label--number');
+  const btnClasses = cx('ContactForm_button', {
+    'ContactForm_button--disabled': isLoadingContacts,
+  });
   return (
     <form onSubmit={handleSubmit} className={styles.ContactForm}>
       <label className={nameClasses}>
@@ -54,6 +58,7 @@ const ContactForm = () => {
           required
           value={name}
           onChange={handleInputChange}
+          disabled={isLoadingContacts}
         />
       </label>
       <label className={numberClasses}>
@@ -68,10 +73,11 @@ const ContactForm = () => {
           required
           value={number}
           onChange={handleInputChange}
+          disabled={isLoadingContacts}
         />
       </label>
 
-      <button type="submit" className={styles.ContactForm_button}>
+      <button type="submit" className={btnClasses} disabled={isLoadingContacts}>
         Add contact
       </button>
     </form>

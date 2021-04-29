@@ -1,4 +1,4 @@
-import './Loader.module.css';
+import './Loader.scss';
 const Loader = () => (
   <div id="spinner" className="spinner">
     <div className="sk-circle">
