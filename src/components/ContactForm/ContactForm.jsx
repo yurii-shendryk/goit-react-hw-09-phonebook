@@ -1,21 +1,19 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { contactsSelectors, contactsOperations } from '../../redux/contacts';
 import classNames from 'classnames/bind';
-
 import styles from './ContactForm.module.css';
-import { addContact } from '../../redux/contacts/contacts-operations';
+
 let cx = classNames.bind(styles);
 const initialState = {
   name: '',
   number: '',
 };
 
-const getContacts = ({ contacts: { items } }) => items;
-const load = ({ contacts: { loading } }) => loading;
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
-  const isLoadingContacts = useSelector(load);
+  const contacts = useSelector(contactsSelectors.getAllContacts);
+  const isLoadingContacts = useSelector(contactsSelectors.getIsLoading);
   const [contactsState, setContactsState] = useState(initialState);
 
   const { name, number } = contactsState;
@@ -32,7 +30,7 @@ const ContactForm = () => {
     event.preventDefault();
     const unavailableName = contacts.some(contact => contact.name === name);
     if (!unavailableName) {
-      dispatch(addContact(name, number));
+      dispatch(contactsOperations.addContact(name, number));
       setContactsState(initialState);
       return;
     }

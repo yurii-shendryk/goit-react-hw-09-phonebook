@@ -1,16 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/contacts/contacts-operations';
+import {
+  contactsOperations,
+  contactsActions,
+  contactsSelectors,
+} from '../../redux/contacts';
 import styles from './Contact.module.css';
 
-const getContact = id => state =>
-  state.contacts.items.find(contact => contact.id === id);
-
 const Contact = ({ id }) => {
-  const { name, number } = useSelector(getContact(id));
+  const visibleContacts = useSelector(contactsSelectors.getFilteredContacts);
+  const { name, number } = useSelector(contactsSelectors.getContact(id));
   const dispatch = useDispatch();
-  const handleDelete = () => dispatch(deleteContact(id));
+  const handleDelete = () => {
+    if (visibleContacts.length < 2) {
+      dispatch(contactsActions.clearFilter(''));
+    }
+    dispatch(contactsOperations.deleteContact(id));
+
+    return;
+  };
   return (
     <li className={styles.Contact__item}>
       <p className={styles.Contact_text}>

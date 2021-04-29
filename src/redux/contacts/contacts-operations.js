@@ -1,28 +1,18 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import {
-  fetchContactsRequest,
-  fetchContactsSuccess,
-  fetchContactsError,
-  addContactRequest,
-  addContactSuccess,
-  addContactError,
-  deleteContactRequest,
-  deleteContactSuccess,
-  deleteContactError,
-} from './contacts-actions';
+import contactsActions from './contacts-actions';
 import 'react-toastify/dist/ReactToastify.css';
 
 axios.defaults.baseURL = 'http://localhost:3004';
 
 const fetchContacts = () => async dispatch => {
-  dispatch(fetchContactsRequest());
+  dispatch(contactsActions.fetchContactsRequest());
   try {
     const { data } = await axios.get('/contacts');
-    dispatch(fetchContactsSuccess(data));
+    dispatch(contactsActions.fetchContactsSuccess(data));
   } catch (error) {
     toast.error(`${error.message}. Please, try again later`);
-    dispatch(fetchContactsError(error.message));
+    dispatch(contactsActions.fetchContactsError(error.message));
   }
 };
 
@@ -32,26 +22,26 @@ const addContact = (name, number) => async dispatch => {
     number,
   };
 
-  dispatch(addContactRequest());
+  dispatch(contactsActions.addContactRequest());
   try {
     const { data } = await axios.post('/contacts', contact);
-    dispatch(addContactSuccess(data));
+    dispatch(contactsActions.addContactSuccess(data));
   } catch (error) {
     toast.error(`${error.message}. Please, try again later`);
-    dispatch(addContactError(error.message));
+    dispatch(contactsActions.addContactError(error.message));
   }
 };
 
 const deleteContact = id => async dispatch => {
-  dispatch(deleteContactRequest());
+  dispatch(contactsActions.deleteContactRequest());
 
   try {
     await axios.delete(`/contacts/${id}`);
-    dispatch(deleteContactSuccess(id));
+    dispatch(contactsActions.deleteContactSuccess(id));
   } catch (error) {
     toast.error(`${error.message}. Please, try again later`);
-    dispatch(deleteContactError(error.message));
+    dispatch(contactsActions.deleteContactError(error.message));
   }
 };
-
-export { addContact, deleteContact, fetchContacts };
+// eslint-disable-next-line
+export default { addContact, deleteContact, fetchContacts };

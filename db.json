@@ -1,19 +1,24 @@
 {
   "contacts": [
     {
-      "name": "мама",
-      "number": "+380951932382",
-      "id": 1
-    },
-    {
-      "name": "Тато",
-      "number": "+380958980662",
-      "id": 2
-    },
-    {
-      "name": "sdsd",
+      "name": "Rosie Simpson",
       "number": "+380966645357",
       "id": 3
+    },
+    {
+      "name": "Rosie Simpsonasasasasa",
+      "number": "+380956334455",
+      "id": 5
+    },
+    {
+      "name": "van",
+      "number": "+380966645357",
+      "id": 7
+    },
+    {
+      "name": "Yurii Shendryk",
+      "number": "+380966645357",
+      "id": 8
     }
   ]
 }
