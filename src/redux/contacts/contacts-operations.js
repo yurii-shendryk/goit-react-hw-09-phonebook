@@ -3,8 +3,6 @@ import { toast } from 'react-toastify';
 import contactsActions from './contacts-actions';
 import 'react-toastify/dist/ReactToastify.css';
 
-axios.defaults.baseURL = 'http://localhost:3004';
-
 const fetchContacts = () => async dispatch => {
   dispatch(contactsActions.fetchContactsRequest());
   try {
@@ -32,12 +30,12 @@ const addContact = (name, number) => async dispatch => {
   }
 };
 
-const deleteContact = id => async dispatch => {
+const deleteContact = contactId => async dispatch => {
   dispatch(contactsActions.deleteContactRequest());
 
   try {
-    await axios.delete(`/contacts/${id}`);
-    dispatch(contactsActions.deleteContactSuccess(id));
+    await axios.delete(`/contacts/${contactId}`);
+    dispatch(contactsActions.deleteContactSuccess(contactId));
   } catch (error) {
     toast.error(`${error.message}. Please, try again later`);
     dispatch(contactsActions.deleteContactError(error.message));

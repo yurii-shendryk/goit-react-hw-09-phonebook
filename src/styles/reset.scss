@@ -59,24 +59,24 @@ li {
   list-style: none;
 }
 
-.container {
-  margin: 0 auto;
-  padding: 0 20px;
-  box-sizing: border-box;
-}
+// .container {
+//   margin: 0 auto;
+//   padding: 0 20px;
+//   box-sizing: border-box;
+// }
 
-@media screen and (max-width: 767px) {
-  .container {
-    width: 320px;
-  }
-}
-@media screen and (min-width: 768px) and (max-width: 1089px) {
-  .container {
-    width: 768px;
-  }
-}
-@media screen and (min-width: 1090px) {
-  .container {
-    width: 1090px;
-  }
-}
+// @media screen and (max-width: 767px) {
+//   .container {
+//     width: 320px;
+//   }
+// }
+// @media screen and (min-width: 768px) and (max-width: 1089px) {
+//   .container {
+//     width: 768px;
+//   }
+// }
+// @media screen and (min-width: 1090px) {
+//   .container {
+//     width: 1090px;
+//   }
+// }

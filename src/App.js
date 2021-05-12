@@ -1,44 +1,42 @@
-import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { ToastContainer } from 'react-toastify';
-import Container from './components/Container';
-import ContactForm from './components/ContactForm';
-import ContactList from './components/ContactList';
-import Filter from './components/Filter';
+import { useDispatch } from 'react-redux';
+import { Suspense, lazy } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import { authOperations } from './redux/auth';
+import AppBar from './components/AppBar';
 import Loader from './components/Loader';
 
-import contactsOperations from './redux/contacts/contacts-operations';
-import contactsSelectors from './redux/contacts/contacts-selectors';
+const HomePageView = lazy(() =>
+  import('./Views/HomePageView' /* webpackChunkName: "home-page" */),
+);
+
+const ContactsView = lazy(() =>
+  import('./Views/ContactsView' /* webpackChunkName: "contacts-page" */),
+);
+
+const RegisterView = lazy(() =>
+  import('./Views/RegisterView' /* webpackChunkName: "register-page" */),
+);
+const LoginView = lazy(() =>
+  import('./Views/LoginView' /* webpackChunkName: "login-page" */),
+);
 
 const App = () => {
-  const contacts = useSelector(contactsSelectors.getAllContacts);
-  const isLoadingContacts = useSelector(contactsSelectors.getIsLoading);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(contactsOperations.fetchContacts());
-    // eslint-disable-next-line
+    dispatch(authOperations.getCurrentUser());
   }, []);
-
   return (
     <>
-      <ToastContainer />
-      <Container>
-        <h1>Phonebook</h1>
-        {/* форма для введення контактних даних  */}
-        <ContactForm />
-
-        {/* якщо контакти є, то відображаємо список і фільтр */}
-        {contacts.length > 0 && <h2>Contacts</h2>}
-
-        {contacts.length > 1 && (
-          <>
-            {/* фільтрація контактів */}
-            <Filter />
-            {/* список контактів */}
-          </>
-        )}
-        {isLoadingContacts ? <Loader /> : <ContactList />}
-      </Container>
+      <AppBar />
+      <Suspense fallback={<Loader />}>
+        <Switch>
+          <Route exact path="/" component={HomePageView} />
+          <Route path="/contacts" component={ContactsView} />
+          <Route path="/register" component={RegisterView} />
+          <Route path="/login" component={LoginView} />
+        </Switch>
+      </Suspense>
     </>
   );
 };

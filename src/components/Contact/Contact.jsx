@@ -39,7 +39,7 @@ const Contact = ({ id }) => {
 };
 
 Contact.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default Contact;
