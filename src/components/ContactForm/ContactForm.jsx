@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { contactsSelectors, contactsOperations } from '../../redux/contacts';
-import classNames from 'classnames/bind';
-import styles from './ContactForm.module.css';
+import classNames from 'classnames';
+import './ContactForm.scss';
 
-let cx = classNames.bind(styles);
 const initialState = {
   name: '',
   number: '',
@@ -17,6 +16,19 @@ const ContactForm = () => {
   const [contactsState, setContactsState] = useState(initialState);
 
   const { name, number } = contactsState;
+
+  const nameClasses = classNames(
+    'ContactForm_label',
+    'ContactForm_label--name',
+  );
+
+  const phoneNumberClasses = classNames(
+    'ContactForm_label',
+    'ContactForm_label--number',
+  );
+  const btnClasses = classNames('ContactForm_button', {
+    'ContactForm_button--disabled': isLoadingContacts,
+  });
 
   const handleInputChange = ({ currentTarget }) => {
     const { name, value } = currentTarget;
@@ -37,19 +49,14 @@ const ContactForm = () => {
     alert(`${name} is already in contacts`);
   };
 
-  const nameClasses = cx('ContactForm_label', 'ContactForm_label--name');
-  const numberClasses = cx('ContactForm_label', 'ContactForm_label--number');
-  const btnClasses = cx('ContactForm_button', {
-    'ContactForm_button--disabled': isLoadingContacts,
-  });
   return (
-    <form onSubmit={handleSubmit} className={styles.ContactForm}>
+    <form onSubmit={handleSubmit} className="ContactForm">
       <label className={nameClasses}>
         Name
         <input
           type="text"
           name="name"
-          className={styles.ContactForm__input}
+          className="ContactForm__input"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
           placeholder=" "
@@ -59,12 +66,12 @@ const ContactForm = () => {
           disabled={isLoadingContacts}
         />
       </label>
-      <label className={numberClasses}>
+      <label className={phoneNumberClasses}>
         Nubmer
         <input
           type="tel"
           name="number"
-          className={styles.ContactForm__input}
+          className="ContactForm__input"
           pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
           title="Номер телефона должен состоять из 11-12 цифр и может содержать цифры, пробелы, тире, пузатые скобки и может начинаться с +"
           placeholder=" "

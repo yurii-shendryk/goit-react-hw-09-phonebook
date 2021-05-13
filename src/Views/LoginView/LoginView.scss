@@ -1,10 +1,74 @@
-.form {
-  width: 320px;
-  margin: 0 auto;
-}
-
-.label {
+@import 'styles/variables';
+.Loginform {
   display: flex;
   flex-direction: column;
+  width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid rgba(33, 33, 33, 0.4);
+  border-radius: 8px;
+}
+
+.Loginform_label {
+  display: flex;
+  flex-direction: column;
+
+  font-size: 18px;
+  line-height: 1.167;
+  letter-spacing: 0.03em;
+  color: #000;
+}
+
+.Loginform_label:not(:last-child) {
   margin-bottom: 15px;
+}
+
+.Loginform_label-email {
+  color: $email-color;
+}
+.Loginform_label-password {
+  color: $password-color;
+}
+.Loginform_button {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  padding: 10px 55px 10px 56px;
+  background-color: $accent-blue;
+  color: #fff;
+  border: 1px solid$accent-blue;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.Loginform_button--disabled {
+  border-color: rgba(0, 0, 0, 0.12);
+  background-color: rgba(0, 0, 0, 0.12);
+  cursor: initial;
+}
+
+.Loginform__input {
+  width: 100%;
+  margin-top: 10px;
+  padding: 11px;
+  font-size: 14px;
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+  outline: none;
+}
+
+.Loginform__input--disabled {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.Loginform__input:focus {
+  border-color: $focus-blue;
+}
+
+.Loginform__input:not(:placeholder-shown):valid {
+  border: 1px solid green;
+}
+
+.Loginform__input:not(:placeholder-shown):invalid {
+  border: 1px solid red;
 }

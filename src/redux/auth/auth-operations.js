@@ -1,4 +1,6 @@
+import { toast } from 'react-toastify';
 import axios from 'axios';
+import 'react-toastify/dist/ReactToastify.css';
 import authActions from './auth-actions';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
@@ -20,6 +22,7 @@ const register = credentials => async dispatch => {
     token.set(data.token);
     dispatch(authActions.registerSuccess(data));
   } catch (error) {
+    toast.error(`${error.message}`);
     dispatch(authActions.registerError(error.message));
   }
 };
@@ -31,6 +34,7 @@ const logIn = credentials => async dispatch => {
     token.set(data.token);
     dispatch(authActions.loginSuccess(data));
   } catch (error) {
+    toast.error('wrong email or password');
     dispatch(authActions.loginError(error.message));
   }
 };
@@ -44,6 +48,7 @@ const logOut = () => async dispatch => {
     token.unset();
     dispatch(authActions.logoutSuccess());
   } catch (error) {
+    toast.error(`${error.message}`);
     dispatch(authActions.logoutError(error.message));
   }
 };
@@ -55,7 +60,6 @@ const getCurrentUser = () => async (dispatch, getState) => {
   if (!persistedToken) {
     return;
   }
-
   token.set(persistedToken);
   dispatch(authActions.getCurrentUserRequest());
 
@@ -63,8 +67,9 @@ const getCurrentUser = () => async (dispatch, getState) => {
     const { data } = await axios.get('/users/current');
     dispatch(authActions.getCurrentUserSuccess(data));
   } catch (error) {
+    toast.error(`${error.message}`);
     dispatch(authActions.getCurrentUserError(error.message));
   }
 };
-
+// eslint-disable-next-line
 export default { register, logIn, logOut, getCurrentUser };

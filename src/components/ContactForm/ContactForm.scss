@@ -1,3 +1,4 @@
+@import 'styles/variables';
 .ContactForm {
   display: flex;
   flex-direction: column;
@@ -21,19 +22,19 @@
 }
 
 .ContactForm_label--name {
-  color: #5c2532;
+  color: $name-color;
 }
 .ContactForm_label--number {
-  color: #547980;
+  color: $number-color;
 }
 .ContactForm_button {
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
   padding: 10px 55px 10px 56px;
-  background-color: #3f51b5;
+  background-color: $accent-blue;
   color: #fff;
-  border: 1px solid#3f51b5;
+  border: 1px solid$accent-blue;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -59,7 +60,7 @@
 }
 
 .ContactForm__input:focus {
-  border-color: #2196f3;
+  border-color: $focus-blue;
 }
 
 .ContactForm__input:not(:placeholder-shown):valid {

@@ -15,7 +15,7 @@ const logoutError = createAction('auth/loginError');
 const getCurrentUserRequest = createAction('auth/getCurrentUserRequest');
 const getCurrentUserSuccess = createAction('auth/getCurrentUserSuccess');
 const getCurrentUserError = createAction('auth/getCurrentUserError');
-
+// eslint-disable-next-line
 export default {
   registerRequest,
   registerSuccess,

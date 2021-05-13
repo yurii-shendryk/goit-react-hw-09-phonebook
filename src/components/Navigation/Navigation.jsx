@@ -1,9 +1,12 @@
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import Container from '../Container';
 import routes from '../../routes';
+import { authSelectors } from '../../redux/auth';
 import './Navigation.scss';
 
 const Navigation = () => {
+  const isAuthenticated = useSelector(authSelectors.getIsAuthenticated);
+
   return (
     <nav className="Navigation">
       <ul className="Navigation__list">
@@ -17,15 +20,17 @@ const Navigation = () => {
             Home
           </NavLink>
         </li>
-        <li className="Navigation__list-item">
-          <NavLink
-            to={routes.contacts}
-            className="Navigation__link"
-            activeClassName="Navigation__link--active"
-          >
-            Contacts
-          </NavLink>
-        </li>
+        {isAuthenticated && (
+          <li className="Navigation__list-item">
+            <NavLink
+              to={routes.contacts}
+              className="Navigation__link"
+              activeClassName="Navigation__link--active"
+            >
+              Contacts
+            </NavLink>
+          </li>
+        )}
       </ul>
     </nav>
   );
