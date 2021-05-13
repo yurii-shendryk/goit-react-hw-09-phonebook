@@ -4,13 +4,13 @@ import './UserMenu.scss';
 
 const UserMenu = () => {
   const dispatch = useDispatch();
-  const name = useSelector(authSelectors.getName);
+  const email = useSelector(authSelectors.getEmail);
   const handleLogout = () => {
     dispatch(authOperations.logOut());
   };
   return (
     <div className="UserMenu__container">
-      <span className="UserMenu__name">Welcome, {name}</span>
+      <span className="UserMenu__name">{email}</span>
       <button type="button" onClick={handleLogout} className="UserMenu__button">
         Logout
       </button>
