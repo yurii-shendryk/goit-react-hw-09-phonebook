@@ -14,7 +14,7 @@ const HomePageView = () => {
           <span role="img" aria-label="greeting icon">
             📓
           </span>
-          Welcome to {name}'s phonebook
+          Welcome, {name}
           <span role="img" aria-label="greeting icon">
             📞
           </span>
