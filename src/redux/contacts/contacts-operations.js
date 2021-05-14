@@ -16,8 +16,8 @@ const fetchContacts = () => async dispatch => {
 
 const addContact = (name, number) => async dispatch => {
   const contact = {
-    name,
-    number,
+    name: name.trim(),
+    number: number.trim(),
   };
 
   dispatch(contactsActions.addContactRequest());

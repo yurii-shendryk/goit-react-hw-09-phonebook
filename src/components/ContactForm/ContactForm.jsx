@@ -40,13 +40,15 @@ const ContactForm = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    const unavailableName = contacts.some(contact => contact.name === name);
+    const unavailableName = contacts.some(
+      contact => contact.name === name.trim(),
+    );
     if (!unavailableName) {
       dispatch(contactsOperations.addContact(name, number));
       setContactsState(initialState);
       return;
     }
-    alert(`${name} is already in contacts`);
+    alert(`${name.trim()} is already in contacts`);
   };
 
   return (
@@ -57,7 +59,7 @@ const ContactForm = () => {
           type="text"
           name="name"
           className="ContactForm__input"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          pattern="^\s*[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*\s*$"
           title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
           placeholder=" "
           required
@@ -72,7 +74,7 @@ const ContactForm = () => {
           type="tel"
           name="number"
           className="ContactForm__input"
-          pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
+          pattern="^\s*(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})$"
           title="Номер телефона должен состоять из 11-12 цифр и может содержать цифры, пробелы, тире, пузатые скобки и может начинаться с +"
           placeholder=" "
           required
