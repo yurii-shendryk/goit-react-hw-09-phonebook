@@ -1,21 +1,16 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { contactsSelectors, contactsOperations } from '../../redux/contacts';
+
 import classNames from 'classnames';
 import './ContactForm.scss';
-
-const initialState = {
-  name: '',
-  number: '',
-};
 
 const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(contactsSelectors.getAllContacts);
   const isLoadingContacts = useSelector(contactsSelectors.getIsLoading);
-  const [contactsState, setContactsState] = useState(initialState);
-
-  const { name, number } = contactsState;
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
 
   const nameClasses = classNames(
     'ContactForm_label',
@@ -30,12 +25,12 @@ const ContactForm = () => {
     'ContactForm_button--disabled': isLoadingContacts,
   });
 
-  const handleInputChange = ({ currentTarget }) => {
-    const { name, value } = currentTarget;
-    setContactsState(prev => ({
-      ...prev,
-      [name]: value,
-    }));
+  const updateName = ({ currentTarget }) => {
+    setName(currentTarget.value);
+  };
+
+  const updateNumber = ({ currentTarget }) => {
+    setNumber(currentTarget.value);
   };
 
   const handleSubmit = event => {
@@ -45,7 +40,8 @@ const ContactForm = () => {
     );
     if (!unavailableName) {
       dispatch(contactsOperations.addContact(name, number));
-      setContactsState(initialState);
+      setName('');
+      setNumber('');
       return;
     }
     alert(`${name.trim()} is already in contacts`);
@@ -64,7 +60,7 @@ const ContactForm = () => {
           placeholder=" "
           required
           value={name}
-          onChange={handleInputChange}
+          onChange={updateName}
           disabled={isLoadingContacts}
         />
       </label>
@@ -79,7 +75,7 @@ const ContactForm = () => {
           placeholder=" "
           required
           value={number}
-          onChange={handleInputChange}
+          onChange={updateNumber}
           disabled={isLoadingContacts}
         />
       </label>

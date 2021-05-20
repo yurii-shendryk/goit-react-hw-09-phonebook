@@ -1,8 +1,7 @@
+@import 'styles/mixins';
 .Filter {
-  margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
   text-align: center;
+  padding: 30px 0;
 }
 
 .Filter__label {
@@ -10,12 +9,19 @@
 }
 
 .Filter__input {
-  margin-left: 20px;
+  width: 250px;
   padding: 8px;
   font-size: 14px;
   border: 1px solid rgba(33, 33, 33, 0.2);
   border-radius: 4px;
   outline: none;
+  @include for-size(mobile-only) {
+    margin-top: 10px;
+    width: 100%;
+  }
+  @include for-size(tablet) {
+    margin-left: 20px;
+  }
 }
 
 .Filter__input:focus {

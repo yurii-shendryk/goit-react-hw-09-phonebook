@@ -6,7 +6,7 @@ import {
   contactsActions,
   contactsSelectors,
 } from '../../redux/contacts';
-import styles from './Contact.module.css';
+import './Contact.scss';
 
 const Contact = ({ id }) => {
   const visibleContacts = useSelector(contactsSelectors.getFilteredContacts);
@@ -21,17 +21,13 @@ const Contact = ({ id }) => {
     return;
   };
   return (
-    <li className={styles.Contact__item}>
-      <p className={styles.Contact_text}>
-        <span className={styles.Contact__name}>{name}</span>:
-        <span className={styles.Contact__number}>{number}</span>
+    <li className="Contact__item">
+      <p className="Contact_text">
+        <span className="Contact__name">{name} </span>
+        <span className="Contact__number">{number}</span>
       </p>
 
-      <button
-        className={styles.Contact__button}
-        type="button"
-        onClick={handleDelete}
-      >
+      <button className="Contact__button" type="button" onClick={handleDelete}>
         Delete
       </button>
     </li>

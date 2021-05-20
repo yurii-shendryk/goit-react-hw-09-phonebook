@@ -15,17 +15,18 @@ const ContactsView = () => {
   const contacts = useSelector(contactsSelectors.getAllContacts);
   const isLoadingContacts = useSelector(contactsSelectors.getIsLoading);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(contactsOperations.fetchContacts());
-    // eslint-disable-next-line
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
       <ToastContainer />
-      <h1>{name}'s phonebook</h1>
-      {/* форма для введення контактних даних  */}
       <Container>
+        <h1>{name}'s phonebook</h1>
+        {/* форма для введення контактних даних  */}
+
         <ContactForm />
 
         {/* якщо контакти є, то відображаємо список і фільтр */}

@@ -1,0 +1,35 @@
+@import 'styles/mixins';
+.MobileMenu {
+  display: block;
+  @include for-size(tablet) {
+    display: none;
+  }
+}
+
+.MobileMenu__icon {
+  width: 40px;
+  height: 40px;
+}
+
+.MobileMenu__content {
+  padding: 20px;
+  font-size: 20px;
+  width: 100%;
+  @include for-size(mobile-only) {
+    display: none;
+    position: absolute;
+    margin: 0 auto;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    z-index: 9999;
+    &.is-open {
+      display: block;
+    }
+  }
+  @include for-size(tablet) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

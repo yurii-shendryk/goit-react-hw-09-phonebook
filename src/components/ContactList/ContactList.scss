@@ -1,9 +1,12 @@
-.ContactList__wrap {
-  text-align: center;
-}
+@import 'styles/mixins';
+
 .ContactList {
-  display: inline-flex;
-  flex-direction: column;
-  padding: 20px;
-  border-radius: 4px;
+  @include for-size(tablet) {
+    display: flex;
+    width: 70%;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 4px;
+  }
 }

@@ -1,12 +1,17 @@
+import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { authSelectors, authOperations } from '../../redux/auth';
+import { authSelectors } from '../../redux/auth';
+import Context from '../AppBar/AppBarContext';
+import { authOperations } from '../../redux/auth';
 import './UserMenu.scss';
 
 const UserMenu = () => {
+  const { toggleDropdown } = useContext(Context);
   const dispatch = useDispatch();
   const email = useSelector(authSelectors.getEmail);
   const handleLogout = () => {
     dispatch(authOperations.logOut());
+    toggleDropdown();
   };
   return (
     <div className="UserMenu__container">

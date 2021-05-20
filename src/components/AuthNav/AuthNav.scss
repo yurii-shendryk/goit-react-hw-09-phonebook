@@ -1,16 +1,38 @@
 @import 'styles/variables';
+@import 'styles/mixins';
+
+.AuthNav {
+}
+
+.AuthNav__list {
+  text-align: center;
+  @include for-size(tablet) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.AuthNav__list-item:not(:last-child) {
+  @include for-size(mobile-only) {
+    margin-bottom: 10px;
+  }
+  @include for-size(tablet) {
+    margin-right: 10px;
+  }
+}
+
 .Navigation__link {
+  display: inline-block;
   padding: 5px;
+  font-size: 16px;
   font-weight: 500;
-  font-size: 18px;
   background-color: $blue;
   border: 1px solid $blue;
   color: $white;
   border-radius: 4px;
-}
-
-.Navigation__link:not(:last-child) {
-  margin-right: 10px;
+  @include for-size(tablet) {
+    font-size: 18px;
+  }
 }
 
 .Navigation__link--active {

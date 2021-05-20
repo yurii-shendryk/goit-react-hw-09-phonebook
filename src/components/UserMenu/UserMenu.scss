@@ -1,15 +1,24 @@
 @import 'styles/variables';
+@import 'styles/mixins';
 .UserMenu__container {
-  display: flex;
-  align-items: center;
+  @include for-size(mobile-only) {
+    text-align: center;
+  }
 }
 
 .UserMenu__name {
-  font-weight: 700;
-  margin-right: 12px;
+  @include for-size(mobile-only) {
+    display: none;
+  }
+  @include for-size(tablet) {
+    font-size: 18px;
+    font-weight: 500;
+    margin-right: 10px;
+  }
 }
 
 .UserMenu__button {
+  display: inline-block;
   padding: 5px;
   font-weight: 500;
   font-size: 18px;

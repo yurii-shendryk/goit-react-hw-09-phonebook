@@ -1,12 +1,16 @@
 @import 'styles/variables';
+@import 'styles/mixins';
 .ContactForm {
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 100%;
   margin: 20px auto;
   padding: 20px;
   border: 1px solid rgba(33, 33, 33, 0.4);
   border-radius: 8px;
+  @include for-size(tablet) {
+    width: 400px;
+  }
 }
 
 .ContactForm_label {

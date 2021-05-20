@@ -1,25 +1,38 @@
-import React from 'react';
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import Context from '../AppBar/AppBarContext';
 import './AuthNav.scss';
-const AuthNav = () => (
-  <div>
-    <NavLink
-      to="/register"
-      exact
-      className="Navigation__link"
-      activeClassName="Navigation__link--active"
-    >
-      register
-    </NavLink>
-    <NavLink
-      to="/login"
-      exact
-      className="Navigation__link"
-      activeClassName="Navigation__link--active"
-    >
-      login
-    </NavLink>
-  </div>
-);
+
+const AuthNav = () => {
+  const { toggleDropdown } = useContext(Context);
+  return (
+    <div className="AuthNav">
+      <ul className="AuthNav__list">
+        <li className="AuthNav__list-item">
+          <NavLink
+            to="/register"
+            exact
+            className="Navigation__link"
+            activeClassName="Navigation__link--active"
+            onClick={toggleDropdown}
+          >
+            register
+          </NavLink>
+        </li>
+        <li className="AuthNav__list-item">
+          <NavLink
+            to="/login"
+            exact
+            className="Navigation__link"
+            activeClassName="Navigation__link--active"
+            onClick={toggleDropdown}
+          >
+            login
+          </NavLink>
+        </li>
+      </ul>
+    </div>
+  );
+};
 
 export default AuthNav;

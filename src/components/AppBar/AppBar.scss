@@ -1,7 +1,20 @@
+@import 'styles/mixins';
+@import 'styles/variables';
 .AppBar__header {
+  position: relative;
+  border-bottom: 1px solid #2a363b;
+  padding-bottom: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #2a363b;
-  padding-bottom: 20px;
+}
+.AppBar__logo {
+  order: -1;
+}
+.AppBar__logo--dark {
+  color: $accent-blue;
+}
+
+.AppBar__logo--light {
+  color: $blue;
 }
