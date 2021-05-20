@@ -4,6 +4,7 @@ import { authSelectors } from '../../redux/auth';
 import Context from '../AppBar/AppBarContext';
 import { authOperations } from '../../redux/auth';
 import './UserMenu.scss';
+import Container from '../Container';
 
 const UserMenu = () => {
   const { toggleDropdown } = useContext(Context);
