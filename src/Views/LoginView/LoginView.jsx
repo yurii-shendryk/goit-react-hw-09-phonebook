@@ -9,14 +9,16 @@ import './LoginView.scss';
 const LoginView = () => {
   const dispatch = useDispatch();
 
-  const initialState = {
-    email: '',
-    password: '',
+  const [email, setEmail] = useState('');
+  const updateEmail = ({ currentTarget }) => {
+    setEmail(currentTarget.value);
   };
 
-  const [loginState, setLoginState] = useState(initialState);
-  const { email, password } = loginState;
+  const [password, setPassword] = useState('');
 
+  const updatePassword = ({ currentTarget }) => {
+    setPassword(currentTarget.value);
+  };
   const emailClasses = classNames('LoginForm_label', 'Loginform_label-email');
 
   const passwordClasses = classNames(
@@ -24,16 +26,13 @@ const LoginView = () => {
     'Loginform_label-password',
   );
 
-  const handleChange = ({ target: { name, value } }) => {
-    setLoginState(prev => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
   const handleSubmit = event => {
     event.preventDefault();
-    dispatch(authOperations.logIn(loginState));
+    const user = {
+      email,
+      password,
+    };
+    dispatch(authOperations.logIn(user));
   };
 
   return (
@@ -48,7 +47,7 @@ const LoginView = () => {
               type="email"
               name="email"
               value={email}
-              onChange={handleChange}
+              onChange={updateEmail}
               placeholder=" "
               className="Loginform__input"
             />
@@ -59,7 +58,7 @@ const LoginView = () => {
               type="password"
               name="password"
               value={password}
-              onChange={handleChange}
+              onChange={updatePassword}
               placeholder=" "
               className="Loginform__input"
             />

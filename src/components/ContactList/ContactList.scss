@@ -1,12 +1,25 @@
 @import 'styles/mixins';
 
 .ContactList {
-  @include for-size(tablet) {
-    display: flex;
-    width: 70%;
-    flex-direction: column;
-    margin: 0 auto;
-    padding: 20px;
+  padding: 20px;
+  margin: 0 auto;
+  width: 100%;
+  @include for-size(mobile-tablet) {
+    display: block;
+    margin-bottom: 0;
+  }
+
+  @include for-size(mobile-only) {
     border-radius: 4px;
+  }
+  @include for-size(mobile-tablet) {
+    width: 80%;
+  }
+  @include for-size(tablet) {
+    width: 70%;
+  }
+
+  @include for-size(desktop) {
+    width: 50%;
   }
 }

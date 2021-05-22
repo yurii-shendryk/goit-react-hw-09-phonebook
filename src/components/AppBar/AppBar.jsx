@@ -8,6 +8,7 @@ import AuthNav from '../AuthNav';
 import UserMenu from '../UserMenu';
 import Container from '../Container';
 import './AppBar.scss';
+import Logo from '../Logo';
 
 const AppBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,20 +19,19 @@ const AppBar = () => {
   };
 
   return (
-    <Container>
+    <Context.Provider value={{ isOpen, toggleDropdown }}>
       <header className="AppBar__header">
-        <div className="AppBar__logo">
-          <span className="AppBar__logo--dark">Phone</span>
-          <span className="AppBar__logo--light">book</span>
-        </div>
-        <Context.Provider value={{ isOpen, toggleDropdown }}>
-          <MobileMenu>
-            <Navigation />
-            {isAuthenticated ? <UserMenu /> : <AuthNav />}
-          </MobileMenu>
-        </Context.Provider>
+        <Container>
+          <nav className="AppBar__nav">
+            <Logo />
+            <MobileMenu>
+              <Navigation />
+              {isAuthenticated ? <UserMenu /> : <AuthNav />}
+            </MobileMenu>
+          </nav>
+        </Container>
       </header>
-    </Container>
+    </Context.Provider>
   );
 };
 

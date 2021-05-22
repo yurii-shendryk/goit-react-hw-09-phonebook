@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const fetchContacts = () => async dispatch => {
   dispatch(contactsActions.fetchContactsRequest());
+
   try {
     const { data } = await axios.get('/contacts');
     dispatch(contactsActions.fetchContactsSuccess(data));

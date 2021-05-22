@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import PropTypes from 'prop-types';
 import IconButton from '../IconButton';
 import Context from '../AppBar/AppBarContext';
 import { ReactComponent as IconMenu } from '../../icons/icon-menu.svg';
@@ -30,6 +31,14 @@ const MobileMenu = ({ children }) => {
       </div>
     </>
   );
+};
+
+MobileMenu.defaultProps = {
+  children: [],
+};
+
+MobileMenu.propTypes = {
+  children: PropTypes.node,
 };
 
 export default MobileMenu;

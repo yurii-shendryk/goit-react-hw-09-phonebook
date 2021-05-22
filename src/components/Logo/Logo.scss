@@ -1,0 +1,18 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+.Logo {
+  order: -1;
+  font-size: 22px;
+  font-weight: 500;
+  @include for-size(tablet) {
+    font-size: 26px;
+    margin-right: 10px;
+  }
+}
+.Logo--dark {
+  color: $accent-blue;
+}
+
+.Logo--light {
+  color: $blue;
+}

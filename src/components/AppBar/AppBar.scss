@@ -1,26 +1,22 @@
-@import 'styles/mixins';
-@import 'styles/variables';
 .AppBar__header {
   position: relative;
   border-bottom: 1px solid #2a363b;
-  padding-bottom: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.AppBar__logo {
-  order: -1;
-  font-size: 22px;
-  font-weight: 500;
-  @include for-size(tablet) {
-    font-size: 26px;
-    margin-right: 10px;
-  }
-}
-.AppBar__logo--dark {
-  color: $accent-blue;
+
+.AppBar__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.AppBar__logo--light {
-  color: $blue;
+.AppBar__Logo-slideIn-appear {
+  transform: translateX(-100%);
+}
+
+.AppBar__Logo-slideIn-appear-active {
+  transform: translateX(0);
+  transition: transform 500ms linear;
 }

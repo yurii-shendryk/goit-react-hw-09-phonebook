@@ -3,19 +3,16 @@ import { Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { authSelectors } from '../redux/auth';
 
-const PublicRoute = ({ component: Component, redirectTo, ...routeProps }) => {
+const PublicRoute = ({ children, redirectTo, ...routeProps }) => {
   const isAuthenticated = useSelector(authSelectors.getIsAuthenticated);
   return (
-    <Route
-      {...routeProps}
-      render={props =>
-        isAuthenticated && routeProps.restricted ? (
-          <Redirect to={redirectTo} />
-        ) : (
-          <Component {...props} />
-        )
-      }
-    />
+    <Route {...routeProps}>
+      {isAuthenticated && routeProps.restricted ? (
+        <Redirect to={redirectTo} />
+      ) : (
+        children
+      )}
+    </Route>
   );
 };
 

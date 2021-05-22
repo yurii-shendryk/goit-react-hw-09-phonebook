@@ -16,7 +16,7 @@ const AuthNav = () => {
             activeClassName="Navigation__link--active"
             onClick={toggleDropdown}
           >
-            register
+            Register
           </NavLink>
         </li>
         <li className="AuthNav__list-item">
@@ -27,7 +27,7 @@ const AuthNav = () => {
             activeClassName="Navigation__link--active"
             onClick={toggleDropdown}
           >
-            login
+            Login
           </NavLink>
         </li>
       </ul>

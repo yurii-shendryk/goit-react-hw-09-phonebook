@@ -9,13 +9,22 @@ import './RegisterView.scss';
 const RegisterView = () => {
   const dispatch = useDispatch();
 
-  const initialState = {
-    name: '',
-    email: '',
-    password: '',
+  const [name, setName] = useState('');
+  const updateName = ({ currentTarget }) => {
+    setName(currentTarget.value);
   };
-  const [registerState, setRegisterState] = useState(initialState);
-  const { name, email, password } = registerState;
+
+  const [email, setEmail] = useState('');
+
+  const updateEmail = ({ currentTarget }) => {
+    setEmail(currentTarget.value);
+  };
+
+  const [password, setPassword] = useState('');
+
+  const updatePassword = ({ currentTarget }) => {
+    setPassword(currentTarget.value);
+  };
 
   const nameClasses = classNames(
     'RegisterForm_label',
@@ -32,17 +41,14 @@ const RegisterView = () => {
     'Registerform_label-password',
   );
 
-  const handleInputChange = ({ currentTarget }) => {
-    const { name, value } = currentTarget;
-    setRegisterState(prev => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
   const handleSubmit = event => {
     event.preventDefault();
-    dispatch(authOperations.register(registerState));
+    const user = {
+      name,
+      email,
+      password,
+    };
+    dispatch(authOperations.register(user));
   };
 
   return (
@@ -64,7 +70,7 @@ const RegisterView = () => {
               pattern="^\s*[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*\s*$"
               title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
               placeholder=" "
-              onChange={handleInputChange}
+              onChange={updateName}
               className="Registerform__input"
             />
           </label>
@@ -75,7 +81,7 @@ const RegisterView = () => {
               name="email"
               value={email}
               placeholder=" "
-              onChange={handleInputChange}
+              onChange={updateEmail}
               className="Registerform__input"
             />
           </label>
@@ -86,7 +92,7 @@ const RegisterView = () => {
               name="password"
               value={password}
               placeholder=" "
-              onChange={handleInputChange}
+              onChange={updatePassword}
               className="Registerform__input"
             />
           </label>

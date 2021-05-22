@@ -9,7 +9,7 @@
 }
 
 .Filter__input {
-  width: 250px;
+  width: 100%;
   padding: 8px;
   font-size: 14px;
   border: 1px solid rgba(33, 33, 33, 0.2);
@@ -17,7 +17,14 @@
   outline: none;
   @include for-size(mobile-only) {
     margin-top: 10px;
-    width: 100%;
+  }
+
+  @include for-size(mobile-tablet) {
+    margin-left: 20px;
+    width: 250px;
+  }
+  @include for-size(tablet) {
+    width: 300px;
   }
   @include for-size(tablet) {
     margin-left: 20px;

@@ -8,11 +8,13 @@
   @include for-size(mobile-only) {
     text-align: center;
   }
-  @include for-size(tablet) {
+  @include for-size(mobile-tablet) {
+    text-align: unset;
+  }
+  @include for-size(mobile) {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    // border: 1px solid transparent;
     padding: 10px;
   }
 }
@@ -32,12 +34,24 @@
 }
 
 .Contact__name {
-  display: block;
-
+  @include for-size(mobile-only) {
+    display: block;
+    margin-bottom: 10px;
+  }
+  @include for-size(mobile-tablet) {
+    margin-bottom: 0;
+  }
   color: $name-color;
 }
 
 .Contact__number {
+  @include for-size(mobile-only) {
+    display: block;
+    margin-bottom: 10px;
+  }
+  @include for-size(mobile-tablet) {
+    margin-bottom: 0;
+  }
   color: $number-color;
 }
 
@@ -51,6 +65,9 @@
   cursor: pointer;
   @include for-size(mobile-only) {
     margin: 0 auto;
+  }
+  @include for-size(mobile-tablet) {
+    margin: 0;
   }
   @include for-size(tablet) {
     padding: 5px 20px;

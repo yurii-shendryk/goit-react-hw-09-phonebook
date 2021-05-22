@@ -25,9 +25,12 @@ const error = createReducer(null, {
 });
 
 const isLogedIn = createReducer(false, {
+  [authActions.getCurrentUserRequest]: () => true,
+
   [authActions.registerSuccess]: () => true,
   [authActions.loginSuccess]: () => true,
   [authActions.getCurrentUserSuccess]: () => true,
+
   [authActions.registerError]: () => false,
   [authActions.loginError]: () => false,
   [authActions.getCurrentUserError]: () => false,

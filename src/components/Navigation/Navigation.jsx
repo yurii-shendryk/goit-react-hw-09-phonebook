@@ -11,7 +11,7 @@ const Navigation = () => {
   const { toggleDropdown } = useContext(Context);
   const isAuthenticated = useSelector(authSelectors.getIsAuthenticated);
   return (
-    <nav className="Navigation">
+    <div className="Navigation">
       <ul className="Navigation__list">
         <li className="Navigation__list-item">
           <NavLink
@@ -37,7 +37,7 @@ const Navigation = () => {
           </li>
         )}
       </ul>
-    </nav>
+    </div>
   );
 };
 

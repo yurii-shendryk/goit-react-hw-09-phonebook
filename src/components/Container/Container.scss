@@ -1,12 +1,13 @@
 @import 'styles/mixins';
 .container {
-  width: 320px;
-  margin: 0 auto;
-  padding: 30px 10px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px 15px;
   @include for-size(tablet) {
-    width: 920px;
+    width: 768px;
   }
   @include for-size(desktop) {
-    width: 1220px;
+    width: 1200px;
   }
 }
