@@ -1,5 +1,9 @@
 @import 'styles/mixins';
 @import 'styles/variables';
+@import 'styles/common';
+.ErrorPage-container {
+  text-align: center;
+}
 
 .ErrorPage-title {
   text-align: center;
@@ -20,7 +24,7 @@
   }
 }
 
-.ErrorPage__image {
+.ErrorPage-image {
   display: block;
   width: 100%;
   margin: 0 auto;

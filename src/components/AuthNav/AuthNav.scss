@@ -1,5 +1,6 @@
 @import 'styles/variables';
 @import 'styles/mixins';
+@import 'styles/common';
 
 .AuthNav__list {
   text-align: center;
@@ -16,28 +17,4 @@
   @include for-size(tablet) {
     margin-right: 10px;
   }
-}
-
-.Navigation__link {
-  display: inline-block;
-  padding: 5px;
-  font-size: 16px;
-  font-weight: 500;
-  background-color: $blue;
-  border: 1px solid $blue;
-  color: $white;
-  border-radius: 4px;
-  @include for-size(tablet) {
-    font-size: 18px;
-  }
-}
-
-.Navigation__link--active {
-  background-color: $accent-blue;
-  border: 1px solid $accent-blue;
-}
-
-.Navigation__link:hover {
-  background-color: $hover-color;
-  border: 1px solid $hover-color;
 }

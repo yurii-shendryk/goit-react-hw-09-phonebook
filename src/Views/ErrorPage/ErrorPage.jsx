@@ -6,16 +6,18 @@ import './ErrorPage.scss';
 const ErrorPage = () => {
   return (
     <Container>
-      <p className="ErrorPage-title">Page not found</p>
-      <ErrorImage className="ErrorPage__image" />
-      <NavLink
-        exact
-        to={routes.home}
-        className="Navigation__link ErrorPage__link"
-        activeClassName="Navigation__link--active"
-      >
-        Return to Home
-      </NavLink>
+      <div className="ErrorPage-container">
+        <p className="ErrorPage-title">Page not found</p>
+        <ErrorImage className="ErrorPage-image" />
+        <NavLink
+          exact
+          to={routes.home}
+          className="Navigation__link"
+          activeClassName="Navigation__link--active"
+        >
+          Return to Home
+        </NavLink>
+      </div>
     </Container>
   );
 };
