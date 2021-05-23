@@ -14,7 +14,7 @@ const MobileMenu = ({ children }) => {
       <IconButton
         onClick={toggleDropdown}
         aria-label="mobile-menu"
-        className="MobileMenu"
+        className="MobileMenu__button"
       >
         {isOpen ? (
           <IconCross className="MobileMenu__icon" />

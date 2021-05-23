@@ -1,8 +1,17 @@
+@import 'styles/variables';
 @import 'styles/mixins';
-.MobileMenu {
+.MobileMenu__button {
   display: block;
+  background-color: $blue;
+  border: 1px solid $blue;
+  border-radius: 4px;
+  padding: 0;
+  font-size: 0;
   @include for-size(tablet) {
     display: none;
+  }
+  & path {
+    fill: $white;
   }
 }
 
@@ -20,10 +29,12 @@
     top: 100%;
     left: 0;
     margin: 0 auto;
-
     padding: 30px 0;
     background-color: #fff;
     z-index: 9999;
+
+    border: 1px solid rgba(0, 0, 0, 0.11);
+
     &.is-open {
       display: block;
     }
