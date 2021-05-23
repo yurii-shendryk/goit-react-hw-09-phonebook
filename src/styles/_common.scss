@@ -28,3 +28,22 @@ ul,
 li {
   list-style: none;
 }
+
+.Navigation__link {
+  display: inline-block;
+  padding: 5px;
+  background-color: $blue;
+  border: 1px solid $blue;
+  color: $white;
+  border-radius: 4px;
+}
+
+.Navigation__link--active {
+  background-color: $accent-blue;
+  border: 1px solid $accent-blue;
+}
+
+.Navigation__link:hover {
+  background-color: $hover-color;
+  border: 1px solid $hover-color;
+}

@@ -24,6 +24,10 @@ const LoginView = lazy(() =>
   import('./Views/LoginView' /* webpackChunkName: "login-page" */),
 );
 
+const PageNotFound = lazy(() =>
+  import('./Views/ErrorPage' /* webpackChunkName: "404-page" */),
+);
+
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -47,6 +51,9 @@ const App = () => {
 
           <PublicRoute restricted path="/login" redirectTo="/contacts">
             <LoginView />
+          </PublicRoute>
+          <PublicRoute>
+            <PageNotFound />
           </PublicRoute>
         </Switch>
       </Suspense>

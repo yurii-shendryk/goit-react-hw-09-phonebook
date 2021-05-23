@@ -34,7 +34,6 @@ const AppBar = () => {
             >
               <Logo />
             </CSSTransition>
-
             <MobileMenu>
               <Navigation />
               {isAuthenticated ? <UserMenu /> : <AuthNav />}

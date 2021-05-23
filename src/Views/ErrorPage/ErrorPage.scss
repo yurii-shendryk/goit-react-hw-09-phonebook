@@ -1,0 +1,33 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+
+.ErrorPage-title {
+  text-align: center;
+  text-transform: uppercase;
+  color: $blue;
+  font-size: 38px;
+  @include for-size(tablet) {
+    font-size: 70px;
+  }
+}
+
+.ErrorPage-text {
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  @include for-size(tablet) {
+    font-size: 50px;
+  }
+}
+
+.ErrorPage__image {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  @include for-size(mobile) {
+    width: 320px;
+  }
+  @include for-size(tablet) {
+    width: 400px;
+  }
+}
